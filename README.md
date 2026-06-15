@@ -1,42 +1,46 @@
 # Time Lapse
 
-A screen recording app built with Pygame and PyAutoGUI that captures screenshots at a fixed interval and saves them as individual PNG frames for later video assembly.
+A screen time-lapse recorder built with Pygame and Pillow. Captures screenshots at a fixed interval, saves them as sequential PNG frames, and can assemble them into a video with ffmpeg.
 
 ## Usage
 
-Run `main.py` — a 360x360 window opens with Start, Pause/Resume, Stop buttons and a folder picker.
+Run `main.py` — a 360×374 window opens with controls for recording and converting frames to video.
 
 | Button | Action |
 |--------|--------|
-| **Start** | Begin capturing screenshots every 2 seconds |
-| **Pause** | Pause capture (resume with the Resume button) |
-| **Resume** | Continue capturing after pause |
+| **Start** | Begin capturing screenshots at the selected interval |
+| **Pause** | Pause capture |
+| **Resume** | Continue capturing after a pause |
 | **Stop** | Stop and reset the session |
-| **Folder icon** | Switch save folder (default: `./frames/`) |
+| **Convert to Video** | Run ffmpeg to assemble frames into a timestamped `.mp4` |
+| **FPS: 30fps / 60fps** | Toggle capture interval: 1 frame/2 s (30 fps) or 1 frame/1 s (60 fps) |
+| **display: all / primary** | Toggle between capturing all monitors or the primary monitor only |
+| **Save Folder** | Choose a save folder via file dialog (default: `./frames/`) |
 
-### Controls
+### Notes
 
-- Click any button with the mouse.
-- Screenshots are saved as `0.png`, `1.png`, `2.png`, ... in the chosen folder.
-- Duplicate frames (no change from last capture) are skipped automatically.
+- Screenshots are saved as `0.png`, `1.png`, `2.png`, … in the chosen folder.
+- Duplicate frames (no pixel change from the previous capture) are skipped automatically.
+- **Convert to Video** requires ffmpeg to be installed and available on your PATH. The output file is named after the date and time recording started, e.g. `2024-06-15_14-30-22.mp4`, and is saved in the same folder as the frames.
+- Save and preview happen in a background thread so the UI stays responsive during capture.
 
 ### Display info
 
 - Total frames captured (including skipped duplicates)
 - Saved frames count
 - Skipped frames count
-- Estimated video time (at 30 fps)
+- Estimated video time at the selected frame rate
 
 ## Requirements
 
-- Python 3.11+
+- Python 3.8+
 - `pygame`
-- `pyautogui`
+- `Pillow`
 
 Install with:
 
 ```
-py -m pip install pygame pyautogui
+py -m pip install -r requirements.txt
 ```
 
 ## Build with PyInstaller
