@@ -1,3 +1,4 @@
 
 frames
-timelapse.log
+logs/
+__pycache__/
