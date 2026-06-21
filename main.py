@@ -1,5 +1,5 @@
 import pygame
-from pygame.locals import *
+from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEMOTION
 import time
 import os
 import subprocess
@@ -10,7 +10,7 @@ from PIL import ImageGrab
 import logging
 import datetime
 
-# Module-level logger shared by every function. setUpLogging() configures the
+# Module-level logger shared by every function. set_up_logging() configures the
 # root logger's handlers; records from this logger propagate up to them.
 log = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ WINDOW_W = 360
 WINDOW_H = 374
 
 # -- hit boxes [x1, y1, x2, y2] ------------------------------------------
-left_box   = [0,   294, 180, 358]   # Start / Pause / Resumepygame.font.SysFont
+left_box   = [0,   294, 180, 358]   # Start / Pause / Resume
 right_box  = [180, 294, 360, 358]   # Convert / Stop
 fps_box    = [0,   258, 120, 290]   # options row -- equal thirds
 disp_box   = [120, 258, 240, 290]
@@ -440,7 +440,7 @@ def main():
         # -- draw -------------------------------------------------------------
         do_draw()
 
-def setUpLogging():
+def set_up_logging():
     log = logging.getLogger()
     log.setLevel(logging.DEBUG)
     formatter = logging.Formatter("%(asctime)s | %(levelname)-8s | %(name)s | %(filename)s | %(funcName)s:%(lineno)d | %(message)s")
@@ -465,5 +465,5 @@ def setUpLogging():
 
 
 if __name__ == '__main__':
-    setUpLogging()
+    set_up_logging()
     main()

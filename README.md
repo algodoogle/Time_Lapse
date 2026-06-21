@@ -21,7 +21,7 @@ Run `main.py` — a 360×374 window opens with controls for recording and conver
 
 - Screenshots are saved as `0.png`, `1.png`, `2.png`, … in the chosen folder.
 - Duplicate frames (no pixel change from the previous capture) are skipped automatically.
-- **Convert to Video** requires ffmpeg to be installed and available on your PATH. The output file is named after the date and time recording started, e.g. `2024-06-15_14-30-22.mp4`, and is saved in the same folder as the frames.
+- **Convert to Video** requires ffmpeg to be installed and available on your PATH. The output file is named after the timestamp of the first captured frame (`0.png`), e.g. `2024-06-15_14-30-22.mp4`, and is saved in the same folder as the frames.
 - Save and preview happen in a background thread so the UI stays responsive during capture.
 
 ### Display info
@@ -46,5 +46,7 @@ py -m pip install -r requirements.txt
 ## Build with PyInstaller
 
 ```
-py -m PyInstaller --onefile --noconsole --clean main.py
+py -m PyInstaller --onefile --noconsole --clean --icon=icon.ico --add-data "icon.ico;." main.py
 ```
+
+`--icon=icon.ico` sets the executable's icon; `--add-data "icon.ico;."` bundles the file so the runtime window icon (`pygame.image.load('icon.ico')`) also loads from the one-file build.
