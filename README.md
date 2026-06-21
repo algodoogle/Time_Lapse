@@ -2,6 +2,10 @@
 
 A screen time-lapse recorder built with Pygame and Pillow. Captures screenshots at a fixed interval, saves them as sequential PNG frames, and can assemble them into a video with ffmpeg.
 
+![](https://github.com/algodoogle/Time_Lapse/blob/main/Screenshot.png)
+
+![](https://github.com/algodoogle/Time_Lapse/blob/main/time_laps.gif)
+
 ## Usage
 
 Run `main.py` — a 360×374 window opens with controls for recording and converting frames to video.
